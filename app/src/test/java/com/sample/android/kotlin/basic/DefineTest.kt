@@ -1,7 +1,10 @@
 package com.sample.android.kotlin.basic
 
 import org.junit.Test
-
+/*
+1. 可变变量定义：var 关键字
+2. 不可变变量定义：val 关键字，只能赋值一次的变量(类似Java中final修饰的变量)
+ */
 class DefineTest {
 
     /**
