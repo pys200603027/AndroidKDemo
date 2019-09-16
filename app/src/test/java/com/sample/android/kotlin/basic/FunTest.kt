@@ -39,12 +39,20 @@ class FunTest {
         println(sumLambda(1, 2))
     }
 
+    /**
+     * 区间操作
+     */
     @Test
     fun testRange() {
 
-        for (i in 1..4) println(i)
-        for (i in 4..1) println(i)
-
-        for (i in 1..4 step 2) println(i)
+        for (i in 1..4) print(i)
+        println()
+        /**
+         * // 什么都不输出
+         */
+        for (i in 4..1) print(i)
+        println()
+        for (i in 1..4 step 2) print(i)
+        println()
     }
 }
