@@ -34,6 +34,9 @@ class WhenTest {
         }
     }
 
+    /**
+     * 作为返回值
+     */
     fun hasPrefix(x: Any) = when (x) {
         is String -> x.startsWith("prefix")
         else -> false
