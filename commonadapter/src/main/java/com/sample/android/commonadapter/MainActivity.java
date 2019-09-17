@@ -30,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Subscribe(
-            tags = {
-                    @Tag(Event.ON_ITEM_CLICK)
-            }
+            tags = {@Tag(Event.ON_ITEM_CLICK)}
     )
     public void onItemClick(Item item) {
 

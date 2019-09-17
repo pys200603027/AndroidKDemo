@@ -63,4 +63,9 @@ public class MainPresenter {
     public void updateSession() {
 
     }
+
+    public void removeSession(Item item) {
+        DaoSession daoSession = App.getDaoSession();
+        ItemDao itemDao = daoSession.getItemDao();
+    }
 }

@@ -13,7 +13,7 @@ import org.greenrobot.greendao.database.DatabaseStatement;
 /** 
  * DAO for table "ITEM".
 */
-public class ItemDao extends AbstractDao<Item, Void> {
+public class ItemDao extends AbstractDao<Item, Long> {
 
     public static final String TABLENAME = "ITEM";
 
@@ -22,7 +22,7 @@ public class ItemDao extends AbstractDao<Item, Void> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", false, "ID");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Uid = new Property(1, String.class, "uid", false, "UID");
     }
 
@@ -39,7 +39,7 @@ public class ItemDao extends AbstractDao<Item, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"ITEM\" (" + //
-                "\"ID\" INTEGER," + // 0: id
+                "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"UID\" TEXT);"); // 1: uid
     }
 
@@ -80,8 +80,8 @@ public class ItemDao extends AbstractDao<Item, Void> {
     }
 
     @Override
-    public Void readKey(Cursor cursor, int offset) {
-        return null;
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     @Override
@@ -100,20 +100,23 @@ public class ItemDao extends AbstractDao<Item, Void> {
      }
     
     @Override
-    protected final Void updateKeyAfterInsert(Item entity, long rowId) {
-        // Unsupported or missing PK type
-        return null;
+    protected final Long updateKeyAfterInsert(Item entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
     
     @Override
-    public Void getKey(Item entity) {
-        return null;
+    public Long getKey(Item entity) {
+        if(entity != null) {
+            return entity.getId();
+        } else {
+            return null;
+        }
     }
 
     @Override
     public boolean hasKey(Item entity) {
-        // TODO
-        return false;
+        return entity.getId() != null;
     }
 
     @Override
