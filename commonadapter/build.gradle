@@ -1,19 +1,22 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
+
+
     defaultConfig {
-        applicationId "com.sample.android.kotlin"
-        minSdkVersion 19
+        applicationId "com.sample.android.commonadapter"
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -25,9 +28,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
-
+greendao {
+    schemaVersion 1
+    generateTests false
+    targetGenDir 'src/main/java'
+    daoPackage 'com.sample.android.commonadapter.data'
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -38,4 +47,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.12"
+    implementation 'com.hwangjr.rxbus:rxbus:1.0.6'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }

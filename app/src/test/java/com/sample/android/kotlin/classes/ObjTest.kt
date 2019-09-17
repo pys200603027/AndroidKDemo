@@ -22,13 +22,16 @@ import org.junit.Test
  */
 class ObjTest {
 
-    /*
-    抽象类
+    /**
+     * 可继承类
      */
     open class Base {
         open fun f() {}
     }
 
+    /*
+       抽象类
+        */
     abstract class Dericed : Base() {
         abstract override fun f()
     }

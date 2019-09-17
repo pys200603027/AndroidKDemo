@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':commonadapter'
 rootProject.name='AndroidKDemo'
